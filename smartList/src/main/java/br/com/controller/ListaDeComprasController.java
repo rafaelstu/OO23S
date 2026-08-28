@@ -13,13 +13,13 @@ public class ListaDeComprasController {
         this.view = view;
     }
 
-    public void iniciar(){
+    public void iniciar() {
         int opcao;
-        do{
+        do {
             view.exibirMenu();
             opcao = view.lerOpcao();
             processarOpcao(opcao);
-        } while (opcao!=0);
+        } while (opcao != 0);
     }
 
     private void processarOpcao(int opcao) {
@@ -32,6 +32,12 @@ public class ListaDeComprasController {
                 break;
             case 3:
                 exibirLista();
+                break;
+            case 4:
+                salvarEmAqrTexto();
+                break;
+            case 5:
+                carregarDeArqTexto();
                 break;
             case 0:
                 view.exibirMensagem("Saindo...");
@@ -53,7 +59,16 @@ public class ListaDeComprasController {
         model.removerProduto(nome);
     }
 
-    private void exibirLista(){
+    private void exibirLista() {
         view.exibirMensagem(model.toString());
     }
+
+    private void salvarEmAqrTexto() {
+        model.salvarEmArquivoTexto("lista_compras.txt"); //ou "D:/dev/lista_compras.txt"
+    }
+
+    private void carregarDeArqTexto() {
+        model.carregarDeArquivoTexto("lista_compras.txt"); //ou "D:/dev/lista_compras.txt"
+    }
+
 }
